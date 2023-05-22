@@ -33,7 +33,7 @@ class FamilyStructure:
                 "first_name": "Abraham",
                 "last_name": self.last_name,
                 "age":27,
-                "lucky_numbers": [1]
+                "lucky_numbers": [1,2]
             }
         ]
 
@@ -42,9 +42,17 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        # fill this method and update the return
-        self._members.append(member)
-        pass
+        new_member = {
+            "id": self._generateId(),
+            "first_name": member["first_name"],
+            "last_name": self.last_name,
+            "age": member["age"],
+            "lucky_numbers": member["lucky_numbers"]
+        }
+        self._members.append(new_member)
+
+
+
 
     def delete_member(self, id):
         for member in self._members:
@@ -54,15 +62,15 @@ class FamilyStructure:
         return {"message": "ID no existe"}
 
 
+
     def get_member(self, id):
-        # Buscar miembro
         for member in self._members:
             if member["id"] == id:
                 return member
-        
-        return None
+        return {"message": "Miembro no encontrado"}
 
-    # this method is done, it returns a list with all the family members
+
+   
     def get_all_members(self):
         return self._members
 
